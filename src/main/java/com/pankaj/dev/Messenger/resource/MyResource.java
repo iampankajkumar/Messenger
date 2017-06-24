@@ -3,8 +3,10 @@ package com.pankaj.dev.Messenger.resource;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -32,7 +34,7 @@ public class MyResource {
     public List<MessageModel> getIt() {
         return m.getAllMessages();
     }
-    @POST
+    @POST //POST create new resource
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public MessageModel addMessage(MessageModel message){
@@ -43,5 +45,18 @@ public class MyResource {
     @Produces(MediaType.APPLICATION_JSON)
     public MessageModel getMessage(@PathParam("messageId") Long messageId){
     	return m.getMessage(messageId);
+    }
+    @PUT
+    @Path("/{messageId}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public MessageModel updateMessage(@PathParam("messageId") Long messageId,MessageModel message){
+    	message.setId(messageId);
+    	return m.updateMessage(message);
+    }
+    @DELETE
+    @Path("/{messageId}")
+    public void removeMessage(@PathParam("messageId") Long messageId){
+    	m.removeMessage(messageId);
     }
 }

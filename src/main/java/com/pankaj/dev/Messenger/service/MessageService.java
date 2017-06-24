@@ -10,7 +10,10 @@ import com.pankaj.dev.Messenger.model.MessageModel;
 import com.pankaj.dev.Messenger.model.Profile;
 
 public class MessageService {
-	
+	public MessageService(){
+		messages.put(1L,new MessageModel(1,"hello 1 !!","pankaj"));
+		messages.put(2L,new MessageModel(2,"hello 2 !!","pankaj"));
+	}
 	private  Map<Long,Profile> profiles=DatabaseClass.getProfiles();
 	private  Map<Long,MessageModel> messages =DatabaseClass.getMessages();
 	public List<MessageModel> getAllMessages(){
@@ -34,7 +37,7 @@ public class MessageService {
 		messages.put(message.getId(),message);
 			return message;
 	}
-	public MessageModel removeMessage(MessageModel message){
-		return messages.remove(message.getId());
+	public void removeMessage(Long messageId){
+		messages.remove(messageId);
 	}
 }

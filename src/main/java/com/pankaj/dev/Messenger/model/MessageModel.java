@@ -12,7 +12,7 @@ public class MessageModel {
 	private Date created;
 	private String author;
 	public MessageModel(){
-		
+		this.created=new Date();
 	}
 	public MessageModel(long id, String message, String author) {
 		this.id=id;
